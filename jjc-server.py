@@ -113,6 +113,7 @@ def create_startarea6(gameid):
 
 # Allow the player to play and verify his move
 def playercanplay(player,moveid,gameid):
+
     # Allow the player to play
     url_round_playercanplay = url + "/rounds/" + moveid
     payload_round_playercanplay = {player + "src":"1"}
@@ -137,7 +138,6 @@ def playercanplay(player,moveid,gameid):
 
             # Check if source field exists
             if not "f" + str(src_field) in ground_list:
-                #failure = "yes"
                 return("notok")
 
             # Check if destination field exists
@@ -150,6 +150,38 @@ def playercanplay(player,moveid,gameid):
 
             # Check if source field is not empty
             elif response_roundcheck2_json["games"][0]["f" + str(src_field)] == "0":
+                return("notok")
+
+            # Check if source field is allowed to move by this player
+            elif response_roundcheck2_json["games"][0]["players"] == "2" and player == "player1" and not int(response_roundcheck2_json["games"][0]["f" + str(src_field)]) in range (10,20):
+                return("notok")
+            elif response_roundcheck2_json["games"][0]["players"] == "2" and player == "player2" and not int(response_roundcheck2_json["games"][0]["f" + str(src_field)]) in range (40,50):
+                return("notok")
+            elif response_roundcheck2_json["games"][0]["players"] == "3" and player == "player1" and not int(response_roundcheck2_json["games"][0]["f" + str(src_field)]) in range (10,20):
+                return("notok")
+            elif response_roundcheck2_json["games"][0]["players"] == "3" and player == "player2" and not int(response_roundcheck2_json["games"][0]["f" + str(src_field)]) in range (30,40):
+                return("notok")
+            elif response_roundcheck2_json["games"][0]["players"] == "3" and player == "player3" and not int(response_roundcheck2_json["games"][0]["f" + str(src_field)]) in range (50,60):
+                return("notok")
+            elif response_roundcheck2_json["games"][0]["players"] == "4" and player == "player1" and not int(response_roundcheck2_json["games"][0]["f" + str(src_field)]) in range (10,20):
+                return("notok")
+            elif response_roundcheck2_json["games"][0]["players"] == "4" and player == "player2" and not int(response_roundcheck2_json["games"][0]["f" + str(src_field)]) in range (20,30):
+                return("notok")
+            elif response_roundcheck2_json["games"][0]["players"] == "4" and player == "player3" and not int(response_roundcheck2_json["games"][0]["f" + str(src_field)]) in range (40,50):
+                return("notok")
+            elif response_roundcheck2_json["games"][0]["players"] == "4" and player == "player4" and not int(response_roundcheck2_json["games"][0]["f" + str(src_field)]) in range (50,60):
+                return("notok")
+            elif response_roundcheck2_json["games"][0]["players"] == "6" and player == "player1" and not int(response_roundcheck2_json["games"][0]["f" + str(src_field)]) in range (10,20):
+                return("notok")
+            elif response_roundcheck2_json["games"][0]["players"] == "6" and player == "player2" and not int(response_roundcheck2_json["games"][0]["f" + str(src_field)]) in range (20,30):
+                return("notok")
+            elif response_roundcheck2_json["games"][0]["players"] == "6" and player == "player3" and not int(response_roundcheck2_json["games"][0]["f" + str(src_field)]) in range (30,40):
+                return("notok")
+            elif response_roundcheck2_json["games"][0]["players"] == "6" and player == "player4" and not int(response_roundcheck2_json["games"][0]["f" + str(src_field)]) in range (40,50):
+                return("notok")
+            elif response_roundcheck2_json["games"][0]["players"] == "6" and player == "player5" and not int(response_roundcheck2_json["games"][0]["f" + str(src_field)]) in range (50,60):
+                return("notok")
+            elif response_roundcheck2_json["games"][0]["players"] == "6" and player == "player6" and not int(response_roundcheck2_json["games"][0]["f" + str(src_field)]) in range (60,70):
                 return("notok")
 
             # Check if destination field is a neighbor
